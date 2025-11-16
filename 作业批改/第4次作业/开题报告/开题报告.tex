@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1in]{geometry} % 设置页边距
+\usepackage{pageborder}                   % 引入 pageborder 宏包
+
+% 设置边框样式
+\SetPageBorder[
+  color=black,      % 边框颜色（可换成 blue, gray, red 等）
+  lineWidth=2pt,    % 线条粗细
+  offset=10mm,      % 与纸张边缘的距离
+  style=single      % 可选: single / double / dashed / dotted
+]{}
+
+\begin{document}
+
+\section*{整页边框示例}
+这是正文内容。你会看到整页都有黑色细边框包围。
+
+\newpage
+第二页同样会自动带上边框。
+
+\end{document}

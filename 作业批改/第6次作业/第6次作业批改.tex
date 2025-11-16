@@ -1,0 +1,41 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{第6次作业批改情况}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+习题3.3 第2题,老师给的答案有误，应为:
+\[ x^{3} - \frac{3}{2}x^{2} + 22x - \frac{253}{5}\ln\left|x+3\right| + \frac{53}{5}\ln\left|x-2\right| + C \]
+
+第13题：有的同学采用其它的三角代换，得出的答案虽然跟老师的结果看起来不太一样，但本质上仍是同一个式子。但考试的时候建议采用标准的三角代换，即$t=tan\frac{x}{2}$,否则改卷的人还得额外花功夫验证你的答案，只要双方有一人算错你都可能因此失分。
+
+以下结论很重要，务必熟记：
+\[
+\; I_n = \int_{0}^{\frac{\pi}{2}} \sin^n x \, dx
+= \int_{0}^{\frac{\pi}{2}} \cos^n x \, dx
+= 
+\begin{cases}
+\dfrac{(n-1)!!}{n!!} \cdot \dfrac{\pi}{2}, & n \text{为偶数}, \\[1em]
+\dfrac{(n-1)!!}{n!!}, & n \text{为奇数}.
+\end{cases}
+\]
+\indent 一个记忆技巧：该公式的证明基于迭代，每次降两阶，因此，偶数时降到0阶，即:
+\[\int_{0}^{\frac{\pi}{2}} \sin^0 x \, dx\]
+因此会带一个$\frac{\pi}{2}$，另一个自然带的是1.\\
+\indent 最近的几次作业计算题居多，助教没法所有的计算过程都细细算一遍，因此还需要各位同学自行对照答案检查一遍，有不确定的计算过程可以询问助教。
+
+
+\end{document}

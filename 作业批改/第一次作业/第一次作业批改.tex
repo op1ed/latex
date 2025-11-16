@@ -1,0 +1,59 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{第1次作业批改情况}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+以下方法还可以证明$\lim_{n \to \infty} \sqrt[n]{n^k} =1$,其中k为固定正整数。或者直接用极限的四则运算，即：$\lim_{n \to \infty} \sqrt[n]{n^k} =(\lim_{n \to \infty} \sqrt[n]{n})^k$
+\begin{figure}[htbp]  % htbp 是浮动位置参数
+    \centering  % 图片居中
+    \includegraphics[width=1\textwidth]{1.png}
+    \caption{习题1.3第6题}  % 图片标题
+    \label{fig:example}  % 标签，用于交叉引用
+\end{figure}
+
+注意以下的说法不正确，即：若函数$f$的值域为$[1,+\infty)$,函数$g$的值域为$[0,1]$,则$fg$的值域为$[0,+\infty)$.容易举出反例：$f=\frac{1}{x},g=x$，定义域为$(0,1]$.要证明一个函数无界的标准做法是从函数的定义区间取出一个序列，使得定义在该序列的值趋于无穷，即:$\exists \{x_n\}\in [a,b]$,使得$|f(x_n)|\to \infty$
+\begin{figure}[htbp]  % htbp 是浮动位置参数
+    \centering  % 图片居中
+    \includegraphics[width=1\textwidth]{3.png}
+    \caption{习题1.2第12题第6小问}  % 图片标题
+    \label{fig:example}  % 标签，用于交叉引用
+\end{figure}
+
+习题1.2的第10题，注意反函数存在的条件是单射，严格单调能推出单射，反之不然。本题可以不验证严格单调，如果在解$x$关于$y$的方程时，解是唯一的，就已经验证了原函数是单射的，即对于固定的$y$(需要$y$是值域内的值)，求解关于$x$的方程，解在定义域内总是唯一的。\\
+
+注意极限四则运算的使用范围，需要两边的极限都是有限的，可以举一个反例:
+$\lim_{n\to \infty} 2=\lim_{n\to \infty} 2+n-n=\lim_{n\to \infty} (2+n) -\lim_{n\to \infty} n=0$。这显然不对。
+\begin{figure}[htbp]  % htbp 是浮动位置参数
+    \centering  % 图片居中
+    \includegraphics[width=1\textwidth]{4.png}
+    \caption{习题1.3第7题第1小问}  % 图片标题
+    \label{fig:example}  % 标签，用于交叉引用
+\end{figure}
+
+一些基本的不等式:
+\begin{gather*}
+    |x+y|\leq |x|+|y|\\
+    |x-y|\geq |x|-|y|\\
+    ||x|-|y||\leq |x-y|\\
+    \frac{a_1 + a_2 + \cdots + a_n}{n} \ge \sqrt[n]{a_1 a_2 \cdots a_n}\\
+\end{gather*}
+
+一些说明：部分同学提前使用了导数和洛必达法则(微分)来解决问题，不推荐同学们在这个阶段使用，虽然等到期末的时候，这些技术都是可以随意使用的。这个阶段希望同学们能掌握极限语言的使用，极限这东西将会贯穿整本高数，即使后期这些东西不再是表面的，但其内核一定是极限语言，就像导数，积分，级数，重积分，曲线积分，一致收敛等，即使在使用这些东西的时候不会显式的用到极限，但其定义是绕不开的。\\
+\indent 这里留一个小问题：一个函数在某个区间上可导，并且其导数始终严格大于0，那么该函数一定严格递增。这看起来非常平凡,但为什么呢，导数是定义在局部一点$x_0$上的，该点导数严格大于0，最多只能推出在一个包含该点的小领域$I$内，右侧的点总是严格大于该点$x_0$，但这甚至说明不了该函数在该领域内严格递增，即$f(x)>f(y),\forall x,y \in I,x> y$.\\
+\indent 要解决这个问题需要用到拉格朗日中值定理，而中值定理依赖于罗尔定理，罗尔定理又依赖于fermat引理，fermat引理的证明需要用到导数的定义及闭区间上连续函数的最大值和最小值定理，后者的证明需要用到实数系的基本定理(本课程不涉及)。这样看来，这个问题也没有想象中那么"简单"。最后扯这么多，只是希望各位克制一下，尽量不使用后边的相关定理解决问题，现阶段尽量用原始的方式解决，知道在面对一些问题的时候知道所用的定理为什么有效。
+
+\end{document}

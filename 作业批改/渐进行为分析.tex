@@ -1,0 +1,189 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\usepackage{adjustbox}
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{渐进行为分析}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+Model:
+\begin{equation}
+\left\{
+\begin{aligned}
+d_S\Delta S-\beta(x)Sf(I)+\gamma(x) I=0 \\
+d_I\Delta I+\beta(x)Sf(I)-\gamma(x) I=0
+\end{aligned}
+\right.
+\label{eq1}
+\end{equation}
+则由$Lou$的最大（最小）值原理，有:
+\[\min(\frac{\gamma}{\beta})\frac{1}{f'(0)}\leq S \leq \max(\frac{\gamma}{\beta})\frac{I_{max}}{f(I_{max})}\]
+又知道：
+\begin{equation}
+\adjustbox{max width=\linewidth}{$
+\left\{
+\begin{alignedat}{2}
+-d_I \Delta I &= \beta(x)\Bigl[ \tfrac{N}{|\Omega|}
+ + \bigl(\tfrac{d_I}{d_S}-1\bigr)\tfrac{\int_{\Omega} I\,\mathrm{d}x}{|\Omega|}
+ - \tfrac{d_I}{d_S} I \Bigr] f(I) - \gamma(x) I, &\quad& x\in\Omega,\\
+\frac{\partial I}{\partial \nu} &= 0, && x\in\partial\Omega.
+\end{alignedat}
+\right.
+$}
+\end{equation}
+同样，利用$Lou$的最大最小值原理，有：
+\begin{equation}
+    \begin{aligned}
+    I\leq \frac{d_S}{d_I}\frac{N}{|\Omega|}+\frac{\int_{\Omega} I dx}{|\Omega|}
+    \end{aligned}
+    \label{eq3}
+\end{equation}
+
+
+
+子情况1:$d_S\to 0$\\
+\indent 由上述估计，可知$S,I$关于$d_S\to 0$一致有界，由$W^{2,p}$估计及嵌入定理，可以得出$I$的$C^{1,\alpha}$估计关于$d_S$一致有界,结合紧嵌入定理，随着$d_S\to 0$,可以抽出一个子列$d_{S_n}\to 0$，使得对应的解
+\[I_n \to I^* \text{ in } C^1(\overline{\Omega})\]
+\indent 对式~\eqref{eq1}使用$Harnack$不等式，可知存在不依赖$d_S$的正常数$C$成立以下式子:
+\[
+C \inf I \geq \sup I
+\] 
+\indent 因此或者$I^*=0$或者$I^*$是正函数。\\
+
+定义
+\begin{equation}
+\begin{aligned}
+\kappa &= d_S S + d_I I, \\
+\overline{S} &= \frac{S}{\kappa}, \\
+\overline{I} &= \frac{I}{\kappa}.
+\end{aligned}
+\end{equation}
+\indent 同时积分得到:
+\begin{equation}
+    \begin{aligned}
+    \kappa|\Omega| \leq d_IN
+    \end{aligned}
+\end{equation}
+\indent 即：$\kappa \leq \frac{N}{|\Omega|}d_I$,从中抽出一个子列使得$\kappa_n$收敛到$\kappa^*$，结合$S_n$一致有界，有$I_n$一致收敛到$I^*=\frac{\kappa^*}{d_I}$,即$I^*$为一非负常函数，接下来可分为以下两种情况:\\
+(a)存在子序列$d_{S_n}\to 0$，使得对应的$\frac{\kappa}{d_{S_n}}\to \infty$,此时$\overline{I}$一致收敛于$\frac{1}{d_I}$，对式~\eqref{eq1}做变量代换，有以下方程:
+\begin{equation}
+\begin{aligned}
+\frac{d_{S_n}}{\kappa}\Delta S+[\gamma(x)-\beta(x)S\frac{f(I)}{I}]\overline{I}=0
+\end{aligned}
+\label{eq5}
+\end{equation}
+结合奇异摄动定理，有$S_n$一致收敛于$S^*=\frac{\gamma I^*}{\beta f(I^*)}$，因此有：
+\begin{equation}
+    \begin{aligned}
+        \int_{\Omega} \frac{\gamma I^*}{\beta f(I^*)}+I^*=N
+    \end{aligned}
+\end{equation}
+注意被积函数关于$I^*$严格递增，因此至多有一解。\\
+(b)存在子序列$d_{S_n}\to 0$，使得对应的$\frac{\kappa}{d_{S_n}}\to C^*$，其中$C^*$为正常数（这由下面的式子可以看出，因为$S$有正下界），有：
+\begin{equation}
+\begin{aligned}
+\frac{\kappa}{d_S}=S+d_I\frac{I}{d_S}
+\end{aligned}
+\label{eq:7}
+\end{equation}
+claim：$\frac{\|I\|}{d_{S}}$有严格正下界，否则考虑如下方程：
+\[
+d_I\Delta u+[\beta S \frac{f(d_SI_S)}{d_SI_S}-\gamma]u=0
+\]
+其中$I_S=\frac{I_n}{d_{S_n}}$，显然$I_S$是上述方程的一个正解，但注意到这同时是一个特征方程，其主特征值满足：
+\[
+\lambda^*=\min\left\{\int_{\Omega} d_I |\nabla \phi|^2 - (\beta S \frac{f(d_SI_S)}{d_SI_S}-\gamma)\phi^2 dx: \varphi \in H^1(\Omega) \text{ and } \int_{\Omega} \varphi^2 dx = 1 \right\}
+\]
+由$R_0>1$可知原文(CL)式1.4的主特征值小于0，而由~\eqref{eq:7},可知$S\to \frac{N}{|\Omega|}$，则上述的变分表达式在$d_{S_n}\to 0$时，应该严格小于0，这与0是主特征值矛盾.\\
+接下来考虑将式~\eqref{eq1}作$W^{2,p}$估计，因此可以得到$(S,I_S)\to (S^*,I_S^*)$,结合前边的叙述及$Harnack$定理，可知$I_S^*$是正函数，再做$Schauder$估计，结合紧嵌入定理及\eqref{eq5}，成立:
+\begin{equation}
+    \begin{aligned}
+        \Delta S^*+[\gamma(x)-\beta(x)S^*f'(0)]I^*=0
+    \end{aligned}
+\end{equation}
+
+子情况2：$d_S\to \infty$
+因为:
+\[
+S=\frac{N}{|\Omega|}+(\frac{d_I}{d_S}-1)\frac{\int_{\Omega}Idx}{|\Omega|}-\frac{d_I}{d_S}I
+\]
+因此当$d_S\to \infty$时，$S$的上界一致，然后对~\eqref{eq1}使用$Harnack$不等式，有：
+\[
+C \inf I\geq \sup I 
+\]
+因此$I$也有上界。结合椭圆估计及嵌入定理，可以抽出子列使得:
+$(S_n,I_n)\to (S^*,I^*)$在$C^{2}(\overline{\Omega})$意义下，断言$I^*=0$不可能成立，证法类似前边$\frac{\|I\|}{d_S}$有严格正下界.其满足以下方程:
+\begin{equation}
+    \begin{aligned}
+    d_I\Delta I^*+\beta(x)\frac{N-\int_{\Omega}I^*}{|\Omega|}f(I^*)-\gamma I^*=0
+    \end{aligned}
+    \label{eq9}
+\end{equation}
+
+这里证明若$\frac{f(x)}{x}$严格递减，则上述方程有且只存在一个正解，存在性由上述说明得到，接证唯一性，考虑带参数的方程:
+\[
+d_I\Delta u+[\beta(x)\frac{N-\tau}{|\Omega|}\frac{f(u)}{u}-\gamma(x)]u=0
+\]
+其中$0\leq \tau \leq N$.假设该方程存在正解$u$和$v$，则由于$\epsilon u(0<\epsilon \leq 1)$与$Mu(M\geq 1)$分别是下解与上解(这是由$\frac{f(u)}{u}$的单调性保证的，此处不需要严格单调)，因此可以取足够小的$\epsilon$与足够大的$M$使得$v$被夹到这两个函数之间，因此不妨设$u\leq v$，在对应的方程分别乘上$v$与$u$，然后积分，可得:
+\[
+\int_{\Omega}uv\beta\frac{N-\tau}{|\Omega|}[\frac{f(u)}{u}-\frac{f(v)}{v}]dx=0
+\]
+由严格单调性即可得到$u=v$,这样便证明了对于固定的$\tau$，该方程至多有一解，另一方面，若有:
+\begin{align*}
+d_I\Delta u + [\beta \frac{N-\tau_{1}}{|\Omega|}\frac{f(u)}{u}-\gamma]u&=0\\
+d_I\Delta v + [\beta \frac{N-\tau_{2}}{|\Omega|}\frac{f(v)}{v}-\gamma]v&=0
+\end{align*}
+不妨设$\tau_{1}>\tau_2$,将$u$代入到第二个方程，则$u$为下解，取足够大的$M$使得$Mv\geq u$，则由上下解方法及至多唯一性，有$u\leq v\leq Mv$，因此式~\eqref{eq9}唯一性成立。\\
+子情况3:$d_I\to \infty,d_S\to \infty$,且$\frac{d_I}{d_S}\to d\in[0,\infty]$\\
+如果$d>0$，则由~\eqref{eq3}可知，$I$有上界，则$S$也有上界，则由椭圆估计，可以抽出子列使得$(S_n,I_n)\to (S^*,I^*)$在$C^{2}(\overline{\Omega})$意义下，且$S^*,I^*$均为非负常数，令$\tilde{I}=\frac{I}{\|I\|_\infty}$，则以下方程成立:
+\[
+d_I\Delta \tilde{I}+[\beta S\frac{f(I)}{I}-\gamma]\tilde{I}=0
+\]
+利用椭圆估计，不难得到$\tilde{I}\to 1$在$C(\Omega)$意义下，对上述方程积分，取极限得到：
+\[
+\int_{\Omega}\beta S^* \frac{f(I^*)}{I^*}-\gamma dx=0
+\]
+即:
+\[
+S^*=\frac{\int_{\Omega}{\gamma}}{\int_{\Omega}{\beta}}\frac{I^*}{f(I^*)}
+\]
+结合守恒，便得到:
+\[
+\frac{\int_{\Omega}{\gamma}}{\int_{\Omega}{\beta}}\frac{I^*}{f(I^*)}+\int_{\Omega}{I^*}=N
+\]
+严格递增便得到$I^*$的唯一性.
+% 即$\frac{I}{d_{S_n}}$一致有界,则有$I^*=0$.claim:$\frac{\|I_n\|_\infty}{d_{S_n}}$有严格正下界，如果$f\in C^{2}$.否则考虑如下方程:
+% \begin{equation}
+%     \begin{aligned}
+%     d_I\Delta I +[\beta f'(0) \frac{N}{|\Omega|}-\gamma-d_I\beta f'(0) I]I=0
+%     \end{aligned}
+%     \label{eq:8}
+% \end{equation}
+% 不妨令$I_S=\frac{I_n}{d_{S_n}}$,则将其代入上述方程左侧,有：
+% \begin{align*}
+% & d_I \Delta I_S + \left[ \beta f'(0) \frac{N}{|\Omega|} - \gamma - d_I \beta f'(0) I_S \right] I_S \\
+% = & \beta I_S \frac{f(d_S I_S)}{d_S I_S} \left[ d_II_S - (d_I - d_{S_n}) \frac{\int I_S \, dx}{|\Omega|} - \frac{N}{|\Omega|} \right] \\
+% & \quad + \left[ \beta f'(0) \frac{N}{|\Omega|} - d_I \beta f'(0) I_S \right] I_S \\
+% = & I_S \left\{ \left[ \frac{f(d_S I_S)}{d_S I_S} - f'(0) \right] \left[ \beta d_I I_S - \beta \frac{N}{|\Omega|} \right] - (d_I - d_{S_n}) \frac{\int I_S \, dx}{|\Omega|} \right\} \\
+% \leq & I_S \left\{ \left[ \frac{f(d_S I_S)}{d_S I_S} - f'(0) \right] \left[ \beta d_S I_S - \beta \frac{N}{|\Omega|} \right] - (d_I - d_{S_n}) \frac{C I_S}{|\Omega|} \right\} \\
+% \end{align*} 
+% 最后一个不等号来自$Harnack$不等式.如果假定$f(x)$是二次连续可微的，则当$n$足够大时可以保证最后一行是小于等于0的,若为$C^{1+\alpha}$的情况，上述放缩没法保证小于等于0.即$\frac{I_n}{d_{S_n}}$是以上方程的上解，又注意到$\epsilon \phi$是一个下解.结合~\eqref{eq:8}有唯一正解，有:
+% \[
+% \epsilon \phi \leq \hat{I} \leq I_S
+% \]
+% 积分便得到矛盾。如果$I_S$一致收敛于0，则此时$(S,I)\to (\frac{N}{\Omega},0)$。\\
+% 接下来
+% % 且对~\eqref{eq1}作$W^{2,p}$估计，结合紧嵌入定理，有$S$在$C^{1}(\overline{\Omega})$收敛到某正连续函数$S^*$,再利用$Schauder$估计及紧嵌入定理，便可得到$(S,I)\to (S^*,I^*)$在$C^{2}(\overline{\Omega})$意义下成立
+\end{document}

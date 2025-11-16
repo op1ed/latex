@@ -1,0 +1,98 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\usepackage{caption}
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{第4次作业批改情况}
+\author{chen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% \begin{center}  % htbp 是浮动位置参数
+%     \includegraphics[width=0.8\textwidth]{3.png}
+%     \captionof{figure}{p73第4题} % 需要 \usepackage{caption}
+% \end{center}
+
+\begin{proposition}
+    若$f(x)\geq 0$在$[a,b]$连续，且$\exists x_0\in [a,b],s.t. f(x_0)>0$,则$\int_{a}^{b} f(x)dx>0$.
+\end{proposition}
+在给出证明之前，给出一个稍显奇怪的例子，定义$Riemann$函数为:
+\[
+R(x) = 
+\begin{cases}
+\dfrac{1}{q}, & \text{若 } x = \dfrac{p}{q} \text{ 为最简分数(即 } p, q \in \mathbb{Z}, q > 0, \gcd(p, q) = 1) \\[6pt]
+0, & \text{若 } x \text{ 是无理数.}
+\end{cases}
+\]
+\indent 其中$gcd(x,y)$为整数对$(x,y)$的最大公约数.可以验证该函数在$[0,1]$区间上是$Riemann$可积的(要验证可能得花点功夫，感兴趣的同学自行搜索),并且该函数在[0,1]上的积分为$0$，看起来跟上边的命题不太吻合，这是因为不符合处处连续的条件.
+\begin{proof}
+    首先连续性保证了该函数一定可积，且$\int_{a}^{b} f(x)dx \geq 0$也是平凡的.不妨假设$x_0\in (a,b)$，端点处的情况类似.由连续性，存在区间\[(x_0-\delta,x_0+\delta)\subset [a,b]\]且在这个区间内\[f(x)>\frac{f(x_0)}{2}\]因此有
+    \[\int_{a}^{b}f(x)dx\geq \int_{x_0-\delta}^{x_0+\delta} f(x)dx\geq f(x_0)\times \delta>0\]
+\end{proof}
+
+习题2.7(18):注意到$(xf(x))'=x^3+1$,如果改用除法得到:
+\[
+\frac{xf'(x)+f(x)}{x^2}=x+\frac{1}{x^2}
+\]
+注意左侧的式子不等于:
+\[\left( \frac{f(x)}{x} \right)' = \frac{x f'(x) - f(x)}{x^2}\]
+
+习题2.8(5):不少同学的证明都是不完善的，严格的不等号需要用到上边的命题0.1.\\
+\indent 习题2.9(2):事实上在证明的过程中仅需要用到$f(x)$在$x_0=a$处右连续，而之所以题目给的条件是$f(x)$在$[a,b]$连续是因为得保证$F_0(x)$有意义，因为不是所有的函数都是可积的，例如$Dirchlet$函数就不是可积的.\\
+
+\indent 习题2.10(2):漏掉该问题后半部分的同学请自行查看老师的解答，这也给我们一个提醒，定理是有适用条件的，不要胡乱使用，否则会得到一些奇怪的结果.再补充一点,被积函数在$x=0$无定义，所以从某种程度上来看对于这个函数的积分定义就不是良好的，可以从两方面看待这件事：从瑕积分的角度来看待这点(这会在下学期学习),另一个方面,忽略掉这一点，或者说重新定义该函数在$x=0$的值，随意取一个数，可以验证该函数仍然可积，并且积分结果与在$x=0$的重新赋值无关，这里举一个简单的例子：
+\[
+f(x)=
+\begin{cases}
+    x,x\in (0,1)\\
+    \alpha,x=1\\
+    \beta,x=0
+\end{cases}
+\]
+\indent $\forall \alpha,\beta \in \mathbb{R}$,f(x)总是可积的，并且积分的值总是$\frac{1}{2}$.\\
+
+\indent 第二章总练习题(3):不能使用求导的四则运算，题目没有说$f(x)$是可导的，一些处处连续但处处不可导的函数：魏尔斯特拉斯函数,Takagi(高木贞治) 函数.这题需要按照导数的定义去求解.
+
+\indent 习题2.5(5)，微分符号用$dx$，不要用$\Delta x$.
+
+总练习题(10):这里给出一种比较通用的方法，只要你证明了离散的情况，那么就可以直接从离散形式的不等式推广到积分不等式.
+\begin{proof}
+    将$[a,b]$$n$等分,$a = x_0 < x_1 < \cdots < x_n = b$,则:
+    \begin{align*}
+        \left( \int_a^b f(x)g(x)\,dx \right)^2 
+        & = \lim_{n \to \infty} 
+        \left[ \sum_{i=1}^n f(x_i) g(x_i) \frac{b-a}{n} \right]^2\\
+        & \leq 
+        \lim_{n \to \infty}
+        \sum_{i=1}^n f^2(x_i)\frac{b-a}{n}
+        \cdot
+        \sum_{i=1}^n g^2(x_i)\frac{b-a}{n}\\
+        & = \left( \int_a^b f^2(x)\,dx \right)
+        \left( \int_a^b g^2(x)\,dx \right)\\
+    \end{align*}
+    第一个不等号由 Cauchy 不等式得到,只要令:\[a_i = f(x_i)\sqrt{\tfrac{b-a}{n}}
+    ,b_i = g(x_i)\sqrt{\tfrac{b-a}{n}}\]
+    注意不要漏掉极限符号，毕竟积分就是通过黎曼和来定义的，上边的黎曼函数积分也只能通过这种定义来计算，无法直接使用牛顿-莱布尼兹公式.值得一提的是，Cauchy不等式也可以用类似的判别法来证明，即老师的解答里边对于积分形式的证明。
+\end{proof}
+
+习题2.7(18),有同学指出最后的答案代入$x=0$可以得到$c=0$,，如果题目有说$f(x)$是定义在整个实数域上的函数，那么没有问题，如果仅定义在$x>0$的区间，那么代入$x=0$就不行了。本题确实有歧义，一般来说都是默认整个实数域.
+
+习题2.5(10)(3):有同学直接把$x$和$y$给解出来，这当然也是可行的，但解的时候错误使用了以下公式:
+\[
+arccos(cos(\theta))=\theta
+\]
+这个式子并不成立，因为$arccos(x)$的值域为$[0,\pi]$，只有$\theta \in [0,\pi]$时才成立。
+
+\end{document}

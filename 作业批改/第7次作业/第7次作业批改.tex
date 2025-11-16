@@ -1,0 +1,39 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{第7次作业批改情况}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+定积分的应用这节公式较多，可以小测或者期末考前临时背诵，特别注意公式里积的变量是什么，不要混淆$dx$和$ds$,也不要忽略积分号前面的常量，比如求极坐标下图形面积，有部分同学没有乘以$\frac{1}{2}$.\\
+\indent 习题4.1第2题第2小问是一个很好的补充，罗尔定理，拉格朗日中值定理以及柯西中值定理都是有适用条件的，不要胡乱使用，罗尔定理要求开区间可导(因此不要求端点单侧可导)，闭区间连续，这里出一个小练习题：\\
+\indent 给定一函数$f(x)$在$[a,b]$连续，$(a,b)$可导，我们知道:
+\[
+f_{+}'(a)=\lim_{x\to a_+}\frac{f(x)-f(a)}{x-a}
+\]
+结合拉格朗日中值定理，可以得到:
+\[
+f_{+}'(a)=\lim_{x\to a_+}f'(\xi)(a<\xi<x)
+\]
+因此极限存在........(吗)?\\
+\indent 下一页给出为什么上述说明是不正确的.\\
+\indent 注意以下求导不正确
+\[
+(x^x)'=x\times x^{x-1}
+\]
+这个函数相当于$f(x)^{g(x)}$形式，正确求导应该是将其化成$e^{g(x)ln(f(x))}$之后再复合求导。
+\newpage
+练习题答案：错误的原因是$\lim_{x\to a_+}f'(\xi)(a<\xi<x)$未必存在，第一没法保证导函数就是连续的(这一点可以对比习题4.1的第12题，导函数具有介值性，而连续函数也有介值性，但具有介值性的函数未必连续，可以自行搜索，这种例子应该不太好构造)，第二即使是在开区间连续的函数在端点处仍然可能不存在极限，比如$f(x)=\frac{1}{x}$。特别取$f(x)=xsin\frac{1}{x}$就是一个闭区间连续，但在端点处不存在导数的例子。
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+\newtheorem{theorem}{定理}[section]  % [section] 表示按章节编号
+\newtheorem{lemma}[theorem]{引理}    % [theorem] 表示与定理共享编号
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+
+% 导言区
+
+\title{第8次作业批改情况}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+利用泰勒公式求极限的时候，展开的时候一定要保留小$o$项，代表此时是作为等式代入，即:
+\[
+f(x)=f(a)+...+o(x^k)\\
+\]
+\[f(x)\sim g(x)\]
+是不同的，等价替换本质上也可以视为泰勒展开的应用，只不过直接找到了对应的阶数做替换，而泰勒展开多用于两个同阶的无穷小相减之后来确定对应的无穷小，例如$x\sim sinx$,那么要确定$x-sinx$的等价无穷小呢，此时就可以使用泰勒公式了，$sinx$展开的第一项被$x$消掉后，第二项就作为主导项了。可以说，泰勒展开是整个一元微积分的顶峰，其它方法能求解的极限那么泰勒公式也一定可以，只要你有耐心展开足够多的项.\\
+\indent 此外如果一个函数可以泰勒展开到第$k$项，就代表了这个函数在这点有$k$阶导，更高阶的导数则没法保证。反过来，如果一个函数在一点有$k$阶导，那么其也一定能泰勒展开到第$k$项。注意这一段说的泰勒展开都是带小$o$项的展开，如果考虑一个区间内的展开，即给定一个定义在$[a,b]$的函数$f(x)$，足够光滑(即任意阶导数存在)，问:
+\[
+f(x)=f(a)+f'(a)(x-a)+...+f^{(n)}(a)(x-a)^n+...
+\]
+是否总是成立，这个问题将会在下学期的高数课程中的幂级数一节讨论，因此这块务必好好学习。同时注意区分拉格朗日余项的展开与上述式子的区别。\\
+\newpage
+以下的证明是不正确的，作为练习，找出证明中错误的部分。(Hint:可能出现\(x_2-x_1\)小的时候,\(f'(c)\)才比较大，此时一大一小相乘是否足够大是未知的)
+\begin{figure}[htbp]  % htbp 是浮动位置参数
+    \centering  % 图片居中
+    \includegraphics[width=0.7\textwidth]{1.png}
+    \caption{总练习题8}  % 图片标题
+    \label{fig:example}  % 标签，用于交叉引用
+\end{figure}
+\end{document}

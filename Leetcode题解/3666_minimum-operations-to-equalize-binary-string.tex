@@ -1,0 +1,51 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{hyperref} % 引入宏包
+
+% 导言区
+
+\title{3666题解}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+
+\subsection{题目}
+
+给你一个二进制字符串 \( s \) 和一个整数 \( k \)。
+在一次操作中，你必须选择恰好 \( k \) 个不同的下标，并将每个 \( '0' \) 翻转为
+ \( '1' \)，每个 \( '1' \) 翻转为 \( '0' \)。
+返回使字符串中所有字符都等于 \( '1' \) 所需的最少操作次数。
+如果不可能，则返回 \( -1 \)。
+
+\subsection{题解}
+
+解题思路来自Leetcode 2141题：同时运行多台电脑的最长时间。
+
+\url{https://leetcode.cn/problems/maximum-running-time-of-n-computers/description/}
+
+反向考虑：给定一个操作总数目$t$，能否实现将其全部置1.假设最开始有$a$个0，$b$个1，
+假设对每个数的操作数定义为$x_i$，则需要$x_{1 \textasciitilde a}$为奇数，且小于等于$t$;
+$x_{a+1 \textasciitilde a+b}$为偶数，且小于等于$t$。
+
+假设$t=(2\times j+1)$,则可能的操作数有：
+\[
+a,a+2,...,(2\times j+1)\times a+2\times j\times b
+\]
+
+只要满足：
+\begin{align*}
+    a\leq t\times k &\leq (2\times j+1)\times a+2\times j\times b\\
+    &((t\times k)-a)\% 2==0
+\end{align*}
+
+然后解相应的不等式即可。另一个类似.
+
+按照类似2141的方案，当$x_i$确定时，假定有$t$列，然后依次将$x_i$个$i$插入到行里面，一行有$t$个
+，满了换行，如果能凑出$k$行，由于设置了$x_i$的上限为t，每一列最多只有一个$x_i$
+,这样保证了一定是个合法方案。
+\end{document}
